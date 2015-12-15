@@ -16,7 +16,6 @@ namespace RestaurantManager.Models
             {
                 if (value != _orderItems)
                 {
-                    //if (Equals(_orderItems, value)) return;
                     _orderItems = value;
                     OnPropertyChanged();
                 }

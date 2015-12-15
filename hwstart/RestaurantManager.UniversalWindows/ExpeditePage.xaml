@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
     <Page.DataContext>
         <models:ExpediteDataManager />
     </Page.DataContext>
@@ -26,7 +27,22 @@
             <RowDefinition Height="0.10*"/>
         </Grid.RowDefinitions>
         <GridView Grid.Row="1" ItemsSource="{Binding OrderItems}" >
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Background="Gray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="300" MinHeight="250">
+                        <ListBox ItemsSource="{Binding Items}" MinHeight="150"/>
+                        <TextBlock Text="{Binding Table.Description}" Foreground="Black" MinHeight="40" FontSize="32"/>
+                        <TextBlock Text="Special Notes" Foreground="Red" MinHeight="30"/>
+                        <TextBlock Text="{Binding SpecialRequests}" Foreground="red" MinHeight="30" />
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding Complete}" HorizontalAlignment="Center" Width="140" Content="Complete" Foreground="Black"/>
+                            <CheckBox IsChecked="{Binding Expedite}" HorizontalAlignment="Center" Width="140" Content="Expedited" Foreground="Black" />                            
+                        </StackPanel>
+                        <Button  Background="Green" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
         </GridView>
-        <Button Content="Clear All Orders" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" />
+        <Button  Content="Clear All Orders" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" />
     </Grid>
 </Page>

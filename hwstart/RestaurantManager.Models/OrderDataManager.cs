@@ -17,7 +17,6 @@ namespace RestaurantManager.Models
 
         private List<MenuItem> _MenuItems;
 
-        //public List<MenuItem> MenuItems { get; set; }
         public List<MenuItem> MenuItems
         {
             get { return _MenuItems; }
@@ -40,8 +39,11 @@ namespace RestaurantManager.Models
 
             set
             {
-                this._CurrentlySelectedMenuItems = value;
-                this.OnPropertyChanged();
+                if (value != _CurrentlySelectedMenuItems)
+                {
+                    _CurrentlySelectedMenuItems = value;
+                    OnPropertyChanged();
+                }
             }
         }
 }
