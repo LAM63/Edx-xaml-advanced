@@ -4,10 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RestaurantManager.UniversalWindows"
     xmlns:models="using:RestaurantManager.Models"
+    xmlns:e="using:RestaurantManager.Extensions"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
     <Page.DataContext>
         <models:ExpediteDataManager />
     </Page.DataContext>
@@ -34,11 +34,20 @@
                         <TextBlock Text="{Binding Table.Description}" Foreground="Black" MinHeight="40" FontSize="32"/>
                         <TextBlock Text="Special Notes" Foreground="Red" MinHeight="30"/>
                         <TextBlock Text="{Binding SpecialRequests}" Foreground="red" MinHeight="30" />
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox IsChecked="{Binding Complete}" HorizontalAlignment="Center" Width="140" Content="Complete" Foreground="Black"/>
-                            <CheckBox IsChecked="{Binding Expedite}" HorizontalAlignment="Center" Width="140" Content="Expedited" Foreground="Black" />                            
-                        </StackPanel>
-                        <Button  Background="Green" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Border>
+                            <Border.Background>
+                                <SolidColorBrush>
+                                    <SolidColorBrush.Color>
+                                        <Binding Path="Expedite">
+                                            <Binding.Converter>
+                                                <e:BooleanToColor TrueColor="Red" FalseColor="Transparent" />
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </SolidColorBrush.Color>
+                                </SolidColorBrush>
+                            </Border.Background>
+                            <Button  Background="Green" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>

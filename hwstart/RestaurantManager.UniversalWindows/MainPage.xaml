@@ -1,8 +1,10 @@
 ﻿<Page
     x:Class="RestaurantManager.UniversalWindows.MainPage"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RestaurantManager.UniversalWindows"
+    xmlns:e="using:RestaurantManager.Extensions"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -14,6 +16,10 @@
             </Border>
         </ControlTemplate>
     </Page.Resources>
+
+    <i:Interaction.Behaviors>
+        <e:PopupMessage  Message="Thank you to the team who developped this." Title ="Credits"/>
+    </i:Interaction.Behaviors>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
