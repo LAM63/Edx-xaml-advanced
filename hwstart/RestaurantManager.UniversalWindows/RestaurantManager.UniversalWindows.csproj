@@ -138,19 +138,23 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\RestaurantManager.Models\RestaurantManager.Models.csproj">
       <Project>{7ea2b405-e454-4f0c-a8c3-d6bf3f814f5c}</Project>
       <Name>RestaurantManager.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RestaurantManager.ViewModels\RestaurantManager.ViewModels.csproj">
+      <Project>{d3925d67-ccaf-460f-8c47-c6269f7b63c9}</Project>
+      <Name>RestaurantManager.ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\RestaurantManger.extensions\RestaurantManager.Extensions.csproj">
       <Project>{9c2723d1-2ccf-4d3f-8c4d-8fbe55af9588}</Project>
       <Name>RestaurantManager.Extensions</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
-      <Name>Behaviors SDK %28XAML%29</Name>
-    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

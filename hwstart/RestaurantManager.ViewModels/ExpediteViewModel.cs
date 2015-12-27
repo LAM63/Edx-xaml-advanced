@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
+using RestaurantManager.Models;
 
-namespace RestaurantManager.Models
+namespace RestaurantManager.ViewModels
 {
-    public class ExpediteDataManager : DataManager
+    public class ExpediteViewModel : ViewModel
     {
         protected override void OnDataLoaded()
         {
-            OrderItems = Repository.Orders;
+            OrderItems = base.Repository.Orders;
         }
         private List<Order> _orderItems;
         public List<Order> OrderItems
         {
-            get { return base.Repository.Orders; }
+            get { return this._orderItems; }
             set
             {
                 if (value != _orderItems)
                 {
                     _orderItems = value;
-                    OnPropertyChanged();
+                    NotifyPropertyChanged();
                 }
             }
         }
