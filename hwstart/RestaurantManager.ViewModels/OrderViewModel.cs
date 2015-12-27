@@ -24,36 +24,38 @@ namespace RestaurantManager.ViewModels
             this.MenuItems = base.Repository.StandardMenuItems;
             this.CurrentlySelectedMenuItems = new ObservableCollection<MenuItem>();
             this._table = base.Repository.Tables.First();
-            this.SpecialRequests = "";        
+            this.SpecialRequests = "";
+
+
         }
 
-        private List<MenuItem> _menuItems;
+        private List<MenuItem> _MenuItems;
 
         public List<MenuItem> MenuItems
         {
-            get { return _menuItems; }
+            get { return _MenuItems; }
 
             set
             {
-                if (value != _menuItems)
+                if (value != _MenuItems)
                 {
-                    _menuItems = value;
+                    _MenuItems = value;
                     NotifyPropertyChanged();
                 }
             }
         }
 
-        private ObservableCollection<MenuItem> _currentlySelectedMenuItems;
+        private ObservableCollection<MenuItem> _CurrentlySelectedMenuItems;
 
         public ObservableCollection<MenuItem>  CurrentlySelectedMenuItems
         {
-            get { return this._currentlySelectedMenuItems; }
+            get { return this._CurrentlySelectedMenuItems; }
 
             set
             {
-                if (value != _currentlySelectedMenuItems)
+                if (value != _CurrentlySelectedMenuItems)
                 {
-                    _currentlySelectedMenuItems = value;
+                    _CurrentlySelectedMenuItems = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -89,15 +91,16 @@ namespace RestaurantManager.ViewModels
             if (CurrentlySelectedMenuItems.Count() != 0)
             {
                 base.Repository.Orders.Add(
-                new Order
-                {
-                    Items = this.CurrentlySelectedMenuItems.ToList<MenuItem>(),
-                    SpecialRequests = this.SpecialRequests,
-                    Table = this._table,
-                });
+                    new Order
+                    {
+                        Items = this.CurrentlySelectedMenuItems.ToList<MenuItem>(),
+                        SpecialRequests = this.SpecialRequests,
+                        Table = this._table,
+                        Complete = false,
+                        Expedite = false,
+                    });
+                await new MessageDialog("Your order has been submitted.").ShowAsync();
                 ClearOrder();
-                await new MessageDialog("Your Order has been submitted.").ShowAsync();
-                
             }
             else await new MessageDialog("Please first add a selection from the Menu").ShowAsync();
         }
